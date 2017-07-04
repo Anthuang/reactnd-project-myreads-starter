@@ -14,7 +14,7 @@ class BookShelf extends React.Component {
         </div>
         <div className="list-books-content">
           <div>
-            {this.shelves.map((shelf) => <Shelf books={ this.props.books } shelf={ shelf } key={ shelf }/>)}
+            {this.shelves.map((shelf) => <Shelf books={ this.props.books } updateBook={ this.props.updateBook } shelf={ shelf } key={ shelf }/>)}
           </div>
         </div>
         <div className="open-search">
