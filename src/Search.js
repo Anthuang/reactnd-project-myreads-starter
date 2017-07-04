@@ -20,7 +20,7 @@ class Search extends React.Component {
   showBooks(books) {
     if (books && books.length) {
       return books.map((book) => (
-        <Book book={ book } key={ book.id }/>
+        <Book book={ book } updateBook={ this.props.updateBook } key={ book.id }/>
       ))
     }
   }

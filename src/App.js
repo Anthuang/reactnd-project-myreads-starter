@@ -21,7 +21,12 @@ class BooksApp extends React.Component {
   updateBook(book, shelf) {
     let books = this.state.books
     BooksAPI.update(book, shelf).then((res) => {
-      books[books.indexOf(book)].shelf = shelf
+      if (books.indexOf(book) === -1) {
+        book.shelf = shelf
+        books.push(book)
+      } else {
+        books[books.indexOf(book)].shelf = shelf
+      }
       this.setState({
         books: books
       })
@@ -32,7 +37,7 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
           <Route path="/search" render={() => (
-            <Search/>
+            <Search updateBook={ this.updateBook.bind(this) }/>
           )}/>
           <Route exact path="/" render={() => (
             <BookShelf books={ this.state.books } updateBook={ this.updateBook.bind(this) }/>
