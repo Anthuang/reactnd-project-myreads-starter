@@ -21,9 +21,14 @@ class Search extends React.Component {
 
   showBooks(books) {
     if (books && books.length) {
-      return books.map((book) => (
-        <Book book={ book } updateBook={ this.props.updateBook } key={ book.id }/>
-      ))
+      return books.map((book) => {
+        const findById = (ele) => ele.id === book.id
+        const target = this.props.books.find(findById)
+        if (target) {
+          book.shelf = target.shelf
+        }
+        return (<Book book={ book } updateBook={ this.props.updateBook } key={ book.id }/>)
+      })
     }
   }
 
